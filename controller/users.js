@@ -1,61 +1,81 @@
 "use strict";
-const UserModel = require('../models/users');
-var logger = require('../logger/logger');
+const UserService = require('../services/users/users')   
 
-class User{
-    async getAllUsers() {
-        try{
-            return await UserModel.find({}).lean();
-        }
-        catch(err){
-            logger.error(err);
-        }
-    }
-    async getUser(userId) {
-        try{
-            return UserModel.find({userId: userId});
-        }
-        catch(err){
-            logger.error(err)
-        }
-    }
-    async createUser(body) {
-        try{
-            let newUser = new UserModel();
-            Object.keys(body).forEach(k => {
-                newUser[k] = body[k];
-            });
-            return await  newUser.save();       
-        }
-        catch(err){
-            logger.error(err)
-        }
-    }
+class UserController{
+    getUsers = async function (req, res, next) {
+        // Validate request parameters, queries using express-validator
+        
+        var page = req.params.page ? req.params.page : 1;
+        var limit = req.params.limit ? req.params.limit : 10;
+        try {
+            var users = await UserService.getUsers({}, page, limit)
+            return res.status(200).json({ status: 200, data: users, message: "Succesfully Users Retrieved" });
+        } catch (error) {
+            res.processError(400, error)
 
-    async updateUser(userId, body) {
+        }
+    }
+    createUser = async function (req, res, next) {
+        try {
+            console.log(req.body)
+            let user = await UserService.createUser(req.body)
+            const token = await user.generateAuthToken()
+            res.status(201).send({ user, token })
+        } catch (error) {
+            res.processError(400, error)
+        }
+    }
+    getProfile = async function (req, res, next) {
         try{
-            let user = await UserModel.findOne({ '_id': userId })
-            Object.keys(body).forEach(k => {
-                if (k !== '__v' && k !== '_id') {
-                    user[k] = body[k];
-                }
-                });
-            return user.save()
+            res.send(req.user)
+        }
+        catch(error){
+            res.processError(400, error)
+        }
+    }
+    updateProfile = async function (req, res, next) {
+        try {
+            let user = await UserService.updateUser(req.user._id, req.body)
+            res.status(201).send({user})
+    } catch (error) {
+        res.processError(400, error)
+    }
+    }
+    login = async function (req, res, next) {
+        try {
+            console.log(req.body)
+            const { email, password } = req.body
+            const user = await UserServices.getUserByCredentials(email, password)
+            if (!user) {
+                return res.processError(401, 'Login failed! Check authentication credentials')
             }
-        catch(err){
-            logger.error(err)
-        } 
+            const token = await user.generateAuthToken()
+            res.send({ user, token })
+        } catch (error) {
+            res.processError(400, "error")
+        }     
     }
-
-    async deleteUser(userId) {
-        try{
-
+    logout = async function (req, res, next) {
+        try {
+            req.user.tokens = req.user.tokens.filter((token) => {
+                return token.token != req.token
+            })
+            await req.user.save()
+            res.send()
+        } catch (error) {
+            res.processError(400, error)
         }
-        catch(err){
-            logger.error(err)
-        }
+    }    
+    logoutAll = async function (req, res, next){
+            try {
+                req.user.tokens.splice(0, req.user.tokens.length)
+                await req.user.save()
+                res.send()
+            } catch (error) {
+                res.processError(400, error)
+            }
     }
 }
 
 
-module.exports = new User();
+module.exports = new UserController();
