@@ -1,5 +1,5 @@
 
-const auth = require('./auth')
+const auth = require('./isAuthenticated')
 
 const superadmin = async(req, res, next) => {
     try {
@@ -8,11 +8,12 @@ const superadmin = async(req, res, next) => {
                 next()
             }
             else {
-            return res.status(401).send({error: "Token valid, but you don't have the right permission to access this resource"});
+                return res.processError(401, "Token valid, but you don't have the right permission to access this resource")
+
             }
         })
     } catch (error) {
-        res.status(401).send({ error: 'Not authorized to access this resource' })
+        res.processError(401, 'Not authorized to access this resource')
     }
 
 }
