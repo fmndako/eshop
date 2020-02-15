@@ -1,0 +1,58 @@
+{
+    "env": {
+        "node": true,
+        "commonjs": true,
+        "es6": true
+    },
+    "parser": "babel-eslint",
+    "extends": "eslint:recommended",
+    "globals": {
+        "Atomics": "readonly",
+        "SharedArrayBuffer": "readonly"
+    },
+    "parserOptions": {
+        "ecmaVersion": 2018
+    },
+    "rules": {
+        "indent": [
+            "error",
+            4
+        ],
+        "linebreak-style": [
+            "warn",
+            "unix"
+        ],
+        "quotes": [
+            "warn",
+            "single"
+        ],
+        "semi": [
+            "warn",
+            "always"
+        ],
+        "eqeqeq":[
+            "error",
+            "always"
+
+        ],
+        "camelcase": [
+            "error",
+            {
+                "properties": "always"
+              }
+        ],
+        "func-names": "warn",
+        "func-style": [
+          "off",
+          "expression"
+        ],
+        "no-unused-vars": [
+            "warn",
+            {
+              "vars": "all",
+              "args": "after-used",
+              "ignoreRestSiblings": true
+            }
+          ]
+    }
+}
