@@ -2,16 +2,15 @@ const mongoose = require('mongoose')
 
 const { Schema } = mongoose
 const Favorite = new Schema({
-    favorite: String,
     user: {
         type: Schema.Types.ObjectId,
         ref: 'User'
     },
-    productDetail:{
+    product:{
         type: Schema.Types.ObjectId,
-        ref: 'ProductDetails'
+        ref: 'Product'
     },
     timeAdded: Date,
 })
 
-module.exports = mongoose.model('Favorites', Favorite)
+module.exports = mongoose.model('Favorite', Favorite)
