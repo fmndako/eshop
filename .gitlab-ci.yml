@@ -2,7 +2,6 @@
 
     stages:
       - build
-      - test
 
     cache:
       paths:
@@ -15,7 +14,3 @@
       artifacts:
         paths:
           - node_modules/
-
-    testing_testing:
-      stage: test
-      script: npm test
