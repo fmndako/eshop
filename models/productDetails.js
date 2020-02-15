@@ -2,10 +2,9 @@ const mongoose = require('mongoose')
 
 const { Schema } = mongoose
 const ProductDetail = new Schema({
-    productDetail: String,
     product: {
         type: Schema.Types.ObjectId,
-        ref: 'Products'
+        ref: 'Product'
     },
     Size: String,
     amount: Number,
@@ -15,11 +14,6 @@ const ProductDetail = new Schema({
         contentType: String
     },
     description: String,
-    category: {
-        type: Schema.Types.ObjectId,
-        ref: 'Category'
-    },
-
 })
 
-module.exports = mongoose.model('ProductDetails ', ProductDetail)
+module.exports = mongoose.model('ProductDetail ', ProductDetail)
