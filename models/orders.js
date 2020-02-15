@@ -1,5 +1,5 @@
-const mongoose = require('mongoose')
-const { Schema } = mongoose
+const mongoose = require('mongoose');
+const { Schema } = mongoose;
 
 const Order = new Schema({
     user: {
@@ -23,6 +23,6 @@ const Order = new Schema({
     amount: Number,
     shipped: Boolean,
     trackingId: String
-})
+});
 
-module.exports = mongoose.model('Order', Order)
+module.exports = mongoose.model('Order', Order);

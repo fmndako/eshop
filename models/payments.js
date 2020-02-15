@@ -1,5 +1,5 @@
-const mongoose = require('mongoose')
-const { Schema } = mongoose
+const mongoose = require('mongoose');
+const { Schema } = mongoose;
 
 const Payment = new Schema({
     order: {
@@ -8,6 +8,6 @@ const Payment = new Schema({
     },
     amount: Number,
     date: Date,
-})
+});
 
-module.exports = mongoose.model('Payment', Payment)
+module.exports = mongoose.model('Payment', Payment);

@@ -1,5 +1,5 @@
-const mongoose = require('mongoose')
-const { Schema } = mongoose
+const mongoose = require('mongoose');
+const { Schema } = mongoose;
 
 const OrderItem = new Schema({
     order: {
@@ -11,6 +11,6 @@ const OrderItem = new Schema({
         ref: 'ProductDetail'
     },
     quatity: Number
-})
+});
 
-module.exports = mongoose.model('OrderItem', OrderItem)
+module.exports = mongoose.model('OrderItem', OrderItem);

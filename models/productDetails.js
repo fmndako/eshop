@@ -1,6 +1,6 @@
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
 
-const { Schema } = mongoose
+const { Schema } = mongoose;
 const ProductDetail = new Schema({
     product: {
         type: Schema.Types.ObjectId,
@@ -14,6 +14,6 @@ const ProductDetail = new Schema({
         contentType: String
     },
     description: String,
-})
+});
 
-module.exports = mongoose.model('ProductDetail ', ProductDetail)
+module.exports = mongoose.model('ProductDetail ', ProductDetail);

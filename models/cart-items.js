@@ -1,5 +1,5 @@
-const mongoose = require('mongoose')
-const { Schema } = mongoose
+const mongoose = require('mongoose');
+const { Schema } = mongoose;
 
 const CartItem = new Schema({
     cart: {
@@ -13,6 +13,6 @@ const CartItem = new Schema({
     savedForLater: Boolean,
     quantity: Number,
     timeAdded: Date,
-})
+});
 
-module.exports = mongoose.model('CartItem', CartItem)
+module.exports = mongoose.model('CartItem', CartItem);
