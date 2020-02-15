@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node index.js",
     "dev": "nodemon index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "pretest": "eslint --ignore-path .gitignore ."
   },
   "repository": {
     "type": "git",
@@ -31,6 +32,8 @@
     "validator": "^12.2.0"
   },
   "devDependencies": {
+    "babel-eslint": "^10.0.3",
+    "eslint": "^6.8.0",
     "nodemon": "^2.0.2"
   }
 }
