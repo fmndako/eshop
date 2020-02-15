@@ -2,7 +2,6 @@ const mongoose = require('mongoose')
 
 const { Schema } = mongoose
 const Product = new Schema({
-    product: String,
     sku: String,
     category: {
         type: Schema.Types.ObjectId,
@@ -13,10 +12,10 @@ const Product = new Schema({
     video_url: String,
     rating: {
         type: Schema.Types.ObjectId,
-        ref: 'Ratings'
+        ref: 'Rating'
     },
     status: String
 
 })
 
-module.exports = mongoose.model('Products', Product)
+module.exports = mongoose.model('Product', Product)
