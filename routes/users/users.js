@@ -1,7 +1,7 @@
-const UserController = require('../controller/users');
+const UserController = require('../../controller/users');
 const express = require('express');
-const isAuthenticated = require('../middleware/isAuthenticated');
-const isAdmin = require('../middleware/isAdmin');
+const isAuthenticated = require('../../middleware/isAuthenticated');
+const isAdmin = require('../../middleware/isAdmin');
 
 const router = express.Router();
 

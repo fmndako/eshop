@@ -1,4 +1,4 @@
-const UserService = require('../services/users/users');   
+const UserService = require('../services/users');   
 
 class UserController{
     getUsers = async function (req, res, next) {
@@ -16,7 +16,7 @@ class UserController{
     }
     createUser = async function (req, res, next) {
         try {
-            console.log(req.body);
+            // console.log(req.body);
             let user = await UserService.createUser(req.body);
             const token = await user.generateAuthToken();
             res.status(201).send({ user, token });
