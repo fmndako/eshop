@@ -1,10 +1,10 @@
-var User = require('../../models/users');
-const { ErrorHandler } = require('../../utilities/error');
+var User = require('../models/users');
+const { ErrorHandler } = require('../utilities/error');
 
 
 
 class UserService {
-    getUsers = async function (query, page, limit) {
+    async getUsers (query, page, limit) {
         try {
             var users = await User.find(query);
             return users;
@@ -13,9 +13,9 @@ class UserService {
             throw new ErrorHandler(400,'Error while Paginating Users');
         }
     }
-    createUser = async function (body) {
+    async createUser (body) {
         try{
-            console.log(body);
+            // console.log(body);
             let newUser = new User();
             Object.keys(body).forEach(k => {
                 newUser[k] = body[k];
@@ -23,11 +23,11 @@ class UserService {
             return await newUser.save();       
         }
         catch(err){
-            throw new ErrorHandler(400,'Error while Retrieving Users');
+            throw new ErrorHandler(400, err);
         }
     }
 
-    updateUser = async function (userId, body) {
+    async updateUser (userId, body) {
         try{
             let user = await User.findOne({ '_id': userId });
             Object.keys(body).forEach(k => {
@@ -42,7 +42,7 @@ class UserService {
         } 
     }
 
-    getUserByCredentials = async function (email, password){
+    async getUserByCredentials (email, password){
         try{
             return await User.findByCredentials(email, password);
         }

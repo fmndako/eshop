@@ -2,12 +2,10 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var app = express();
 var moongoose = require('mongoose');
-var logger = require('./logger/logger');
 
 var { handleError, ErrorHandler} = require('./utilities/error');
 
 require('dotenv').config();
-var port = process.env.PORT || 3070;
 
 moongoose.connect(process.env.DB_URL, { 
     useNewUrlParser: true,
@@ -39,6 +37,4 @@ app.use((err, req, res, next)=> {
     handleError(err, res);
 });
 
-app.listen(port, function(err) {
-    logger.info('running server on from port:::::::' + port);
-});
+module.exports = app;
