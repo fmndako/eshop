@@ -2,6 +2,18 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 const Order = new Schema({
+    created: String,
+    status: String,
+    amount: Number,
+    shipped: Boolean,
+    tracking: {
+        type: Schema.Types.ObjectId,
+        ref: 'Shipping'
+    }, 
+    merchant: {
+        type: Schema.Types.ObjectId,
+        ref: 'User'
+    }, 
     user: {
         type: Schema.Types.ObjectId,
         ref: 'User'
@@ -9,20 +21,7 @@ const Order = new Schema({
     address: {
         type: Schema.Types.ObjectId,
         ref: 'Address'
-    },
-    discount: {
-        type: Schema.Types.ObjectId,
-        ref: 'Discount'
-    },
-    created: String,
-    modified: {
-        data: Buffer,
-        contentType: String
-    },
-    status: String,
-    amount: Number,
-    shipped: Boolean,
-    trackingId: String
+    }
 });
 
 module.exports = mongoose.model('Order', Order);

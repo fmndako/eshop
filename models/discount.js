@@ -2,16 +2,10 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 const Discount = new Schema({
-    name: {
-        type: Schema.Types.ObjectId,
-        ref: 'accountDetail',
-    },
-    discount: String,
-    type: String,
-    created: String,
-    valid: String,
-    quanity: String,
-
+    percent: String,
+    created: Date,
+    endDate: Date,
+    startDate: Date,
 });
 
 module.exports = mongoose.model('Discount', Discount);

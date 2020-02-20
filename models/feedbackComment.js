@@ -1,17 +1,10 @@
 const mongoose = require('mongoose');
-const {
-    Schema
-} = mongoose;
+const { Schema } = mongoose;
 
 const feedbackComment = new Schema({
-    comment: String,
-    feedback: {
+    image:  {
         type: Schema.Types.ObjectId,
-        ref: 'CustomerFeedbacks'
-    },
-    image: {
-        data: Buffer,
-        contentType: String
+        ref: 'Image'
     },
     comment: String
 });
