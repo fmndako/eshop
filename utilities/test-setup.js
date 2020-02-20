@@ -1,6 +1,7 @@
 // test-setup.js 
 const mongoose = require('mongoose');
 mongoose.set('useCreateIndex', true);
+mongoose.set('useUnifiedTopology', true);
 mongoose.promise = global.Promise;
 
 async function removeAllCollections () {

@@ -1,4 +1,5 @@
 const UserService = require('../services/users');   
+const AuthService = require('../services/auth');   
 
 class UserController{
     getUsers = async function (req, res, next) {
@@ -11,7 +12,6 @@ class UserController{
             return res.status(200).json({ status: 200, data: users, message: 'Succesfully Users Retrieved' });
         } catch (error) {
             res.processError(400, error);
-
         }
     }
     createUser = async function (req, res, next) {
@@ -44,7 +44,7 @@ class UserController{
         try {
             console.log(req.body);
             const { email, password } = req.body;
-            const user = await UserService.getUserByCredentials(email, password);
+            const user = await AuthService.getUserByCredentials(email, password);
             if (!user) {
                 return res.processError(401, 'Login failed! Check authentication credentials');
             }

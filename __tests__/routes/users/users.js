@@ -1,9 +1,9 @@
-const app = require('../../index'); // Link to your server file
+const app = require('../../../index'); // Link to your server file
 const supertest = require('supertest');
 const request = supertest(app);
-const User = require('../../models/users');
+const User = require('../../../models/users');
 
-const { setupDB } = require('../../utilities/test-setup');
+const { setupDB } = require('../../../utilities/test-setup');
 
 // Setup a Test Database
 setupDB('endpoint-testing');

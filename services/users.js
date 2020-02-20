@@ -4,12 +4,18 @@ const { ErrorHandler } = require('../utilities/error');
 
 
 class UserService {
+    async getUser (userId) {
+        try {
+            return await User.findOne({'_id': userId});
+        } catch (e) {
+            throw new ErrorHandler(400,'Error while Paginating Users');
+        }
+    }
     async getUsers (query, page, limit) {
         try {
-            var users = await User.find(query);
+            var users = await User.find(query).skip(page).limit(limit);
             return users;
         } catch (e) {
-            // Log Errors
             throw new ErrorHandler(400,'Error while Paginating Users');
         }
     }
@@ -42,15 +48,17 @@ class UserService {
         } 
     }
 
-    async getUserByCredentials (email, password){
+    async deleteUser (userId){
         try{
-            return await User.findByCredentials(email, password);
+            return await User.deleteOne({'_id': userId});
         }
         catch(err){
-            throw new ErrorHandler(400,'Error retrieving user');
+            throw new ErrorHandler(400,'Error Deleteing user');
         }
     }
 }
+
+
 
 
 module.exports = new UserService();
