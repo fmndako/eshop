@@ -3,6 +3,7 @@ const { Schema } = mongoose;
 
 const Shipping = new Schema({
     company: String,
+    trackingId: String,
     amount: Number,
     free: Boolean,
     date: Date,
