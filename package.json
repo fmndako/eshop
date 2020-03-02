@@ -8,7 +8,7 @@
     "dev": "nodemon start.js",
     "test": "jest --detectOpenHandles --forceExit --testTimeout=10000",
     "test:watch": "jest --watch",
-    "pretest": "eslint --ignore-path .gitignore . '--fix'"
+    "pretest": "eslint --ignore-path .gitignore . "
   },
   "repository": {
     "type": "git",

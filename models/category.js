@@ -6,7 +6,7 @@ const Category = new Schema({
     description: String,
     subCategory: {
         type: Schema.Types.ObjectId,
-        ref: 'Category'
+        ref: 'SubCategory'
     },
 
 });
