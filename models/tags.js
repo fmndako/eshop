@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
-
 const { Schema } = mongoose;
+
 const Tag = new Schema({
     product: {
         type: Schema.Types.ObjectId,

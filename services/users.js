@@ -1,21 +1,27 @@
-var User = require('../../models/users');
-const { ErrorHandler } = require('../../utilities/error');
+var User = require('../models/users');
+const { ErrorHandler } = require('../utilities/error');
 
 
 
 class UserService {
-    getUsers = async function (query, page, limit) {
+    async getUser (userId) {
         try {
-            var users = await User.find(query);
-            return users;
+            return await User.findOne({'_id': userId});
         } catch (e) {
-            // Log Errors
             throw new ErrorHandler(400,'Error while Paginating Users');
         }
     }
-    createUser = async function (body) {
+    async getUsers (query, page, limit) {
+        try {
+            var users = await User.find(query).skip(page).limit(limit);
+            return users;
+        } catch (e) {
+            throw new ErrorHandler(400,'Error while Paginating Users');
+        }
+    }
+    async createUser (body) {
         try{
-            console.log(body);
+            // console.log(body);
             let newUser = new User();
             Object.keys(body).forEach(k => {
                 newUser[k] = body[k];
@@ -23,11 +29,11 @@ class UserService {
             return await newUser.save();       
         }
         catch(err){
-            throw new ErrorHandler(400,'Error while Retrieving Users');
+            throw new ErrorHandler(400, err);
         }
     }
 
-    updateUser = async function (userId, body) {
+    async updateUser (userId, body) {
         try{
             let user = await User.findOne({ '_id': userId });
             Object.keys(body).forEach(k => {
@@ -42,15 +48,17 @@ class UserService {
         } 
     }
 
-    getUserByCredentials = async function (email, password){
+    async deleteUser (userId){
         try{
-            return await User.findByCredentials(email, password);
+            return await User.deleteOne({'_id': userId});
         }
         catch(err){
-            throw new ErrorHandler(400,'Error retrieving user');
+            throw new ErrorHandler(400,'Error Deleteing user');
         }
     }
 }
+
+
 
 
 module.exports = new UserService();

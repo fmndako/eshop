@@ -32,7 +32,8 @@ var UserSchema   = new Schema({
         }
     }],
     isAdmin: {type: Boolean, default: 'false'},
-    verified: { type: Boolean, default: 'false' },
+    approved: { type: Boolean, default: 'false' },
+    isActive: { type: Boolean, default: 'false' },
     dateCreated: {type: Date, default: Date.Now}
 
 });
