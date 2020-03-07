@@ -16,7 +16,7 @@ app.use(function middleware1(req, res, next){
     };
     next();      
 });
-
+app.use(express.static('public'));
 app.get('/', function(req, res) {
     res.send('App works!!');
 });
