@@ -8,14 +8,14 @@ class CustomerReviewService {
         try {
             return await CustomerReview.findOne({
                 '_id': reviewId
-            }).populate('user product images');
+            }).populate('user product');
         } catch (e) {
             throw new ErrorHandler(400, 'Can not find review');
         }
     }
     async getAllReviews(query, page, limit) {
         try {
-            var review = await CustomerReview.find(query).populate('user product images').skip(page).limit(limit);
+            var review = await CustomerReview.find(query).populate('user product').skip(page).limit(limit);
             return review;
         } catch (e) {
             throw new ErrorHandler(400, 'Error paginating customer reviews');

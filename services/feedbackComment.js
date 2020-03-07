@@ -8,14 +8,14 @@ class FeedbackCommentService {
         try {
             return await FeedbackComment.findOne({
                 '_id': commentId
-            }).populate('image');
+            });
         } catch (e) {
             throw new ErrorHandler(400, 'Can not find feedback comment');
         }
     }
     async getAllComments(query, page, limit) {
         try {
-            var comment = await FeedbackComment.find(query).populate('image').skip(page).limit(limit);
+            var comment = await FeedbackComment.find(query).skip(page).limit(limit);
             return comment;
         } catch (e) {
             throw new ErrorHandler(400, 'Error paginating feedback comments');

@@ -6,12 +6,13 @@ const ProductDetail = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'Product'
     },
-    size: String,
-    amount: Number,
-    color: String,
+    specifications: [{
+        type: String,
+        value: String}
+    ],
     images: [{
-        data: Buffer,
-        contentType: String
+        file: String,
+        type: String
     }],
     description: String,
 });

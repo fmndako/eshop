@@ -3,7 +3,7 @@ const {
     ErrorHandler
 } = require('../utilities/error');
 
-class PaymentsService {
+class AddressService {
     async getAddress(addressId) {
         try {
             return await Address.findOne({
@@ -21,7 +21,7 @@ class PaymentsService {
             throw new ErrorHandler(400, 'Error paginating addresses');
         }
     }
-    async creatAddress(body) {
+    async createAddress(body) {
         try {
             let newAddress = new Address();
             Object.keys(body).forEach(k => {
@@ -59,4 +59,4 @@ class PaymentsService {
         }
     }
 }
-module.exports = new PaymentsService();
+module.exports = new AddressService();

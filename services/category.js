@@ -9,10 +9,10 @@ class CategoryService {
             throw new ErrorHandler(400, 'Error occur while Paginating Category');
         }
     }
-    async getCategorys(query, page, limit) {
+    async getCategories(query, page, limit) {
         try {
-            var categorys = await Category.find(query).skip(page).limit(limit);
-            return categorys;
+            var categories = await Category.find(query).skip(page).limit(limit);
+            return categories;
         } catch (e) {
             throw new ErrorHandler(400, 'Error while Paginating Category');
         }

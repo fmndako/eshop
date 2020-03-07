@@ -14,8 +14,8 @@ const CustomerReview = new Schema({
         ref: 'Product'
     },
     images: [{
-        type: Schema.Types.ObjectId,
-        ref: 'Image'
+        filename: String,
+        type: String
     }]
 });
 

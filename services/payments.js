@@ -3,7 +3,7 @@ const {
     ErrorHandler
 } = require('../utilities/error');
 
-class PaymentsService {
+class PaymentService {
     async getPayment(paymentId) {
         try {
             let result = await Payments.findOne({
@@ -62,4 +62,4 @@ class PaymentsService {
         }
     }
 }
-module.exports = new PaymentsService();
+module.exports = new PaymentService();

@@ -4,7 +4,7 @@ const { ErrorHandler } = require('../utilities/error');
 class ProductService {
     async getProduct(productId) {
         try {
-            return await Product.findOne({'_id': productId}).populate('Store User Discount Image Category');
+            return await Product.findOne({'_id': productId}).populate('Store User Discount Category');
         } catch (e) {
             throw new ErrorHandler(400, 'Error occur while updating Product');
         }
