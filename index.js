@@ -1,18 +1,11 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var app = express();
-var moongoose = require('mongoose');
 
 var { handleError, ErrorHandler} = require('./utilities/error');
 
 require('dotenv').config();
-
-moongoose.connect(process.env.DB_URL, { 
-    useNewUrlParser: true,
-    useCreateIndex: true,
-    useUnifiedTopology: true
-}); 
-
+require('./db/db');
 
 app.use(bodyParser.json());    
 app.use(function middleware1(req, res, next){
