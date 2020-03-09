@@ -1,9 +1,16 @@
 const express = require('express');
 const apiRouter = express();
-const user  = require('./users');
+const users  = require('./users');
+const products  = require('./products');
+const orders  = require('./orders');
 
-apiRouter.use('/auth', user);
-// apiRouter.use('/products', product);
+
+
+
+
+apiRouter.use('/', users);
+apiRouter.use('/products', products); 
+apiRouter.use('/orders', orders);
 
 
 

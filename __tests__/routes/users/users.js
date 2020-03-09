@@ -19,8 +19,8 @@ describe('App Endpoints', () => {
         expect(response.text).toBe('App works!!');
         done();
     });
-    it('Should save user to database', async done => {
-        const res = await request.post('/api/1/users/auth')
+    it('Should signup a user', async done => {
+        const res = await request.post('/api/1/signup')
             .send({
                 password: 'Zell',
                 email: 'testing@gmail.com'

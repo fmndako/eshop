@@ -6,7 +6,7 @@ const Tag = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'Product'
     },
-    tag: String
+    name: String
 });
 
 module.exports = mongoose.model('Tag', Tag);

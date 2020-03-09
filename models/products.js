@@ -9,7 +9,7 @@ const Product = new Schema({
     shortDescription: String,
     longDescription: String,
     videoUrl: String,
-    status: String,
+    approved: Boolean,
     store: {
         type: Schema.Types.ObjectId,
         ref: 'Store'

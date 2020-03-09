@@ -1,22 +1,10 @@
-const UserController = require('../../controller/users');
+const UserController = require('../../controller/users/users');
 const express = require('express');
-const isAuthenticated = require('../../middleware/isAuthenticated');
-const isAdmin = require('../../middleware/isAdmin');
 
 const router = express.Router();
 
-router.get('/', isAdmin, UserController.getUsers);
+router.get('/', UserController.getUser);
 
-router.post('/', UserController.createUser);
-
-router.get('/profile', isAuthenticated, UserController.getProfile);
-
-router.put('/profile', isAuthenticated, UserController.updateProfile);
-
-router.post('/login', UserController.login);
-
-router.post('/logout', isAuthenticated, UserController.logout);
-
-router.post('/logoutall', isAuthenticated, UserController.logoutAll);
+router.put('/', UserController.updateUser);
 
 module.exports = router;
