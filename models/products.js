@@ -10,18 +10,18 @@ const Product = new Schema({
     longDescription: String,
     videoUrl: String,
     approved: Boolean,
-    store: [{
+    store: {
         type: Schema.Types.ObjectId,
         ref: 'Store'
-    }],
-    merchant: [{
+    },
+    merchant: {
         type: Schema.Types.ObjectId,
         ref: 'User'
-    }],
-    discount: [{
+    },
+    discount: {
         type: Schema.Types.ObjectId,
         ref: 'Discount'
-    }],
+    },
     categories: [{
         type: Schema.Types.ObjectId,
         ref: 'Category'
