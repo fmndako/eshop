@@ -7,7 +7,7 @@ class MerchantController {
         try {
             var page = req.params.page ? req.params.page : 1;
             var limit = req.params.limit ? req.params.limit : 10;
-            let query = {};
+            let query = { 'merchant': req.user._id };
             var products = await MerchantService.getProducts(query, page, limit);
             return res.send(products);
         } catch (error) {

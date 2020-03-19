@@ -14,7 +14,7 @@ class BankDetailsController {
         try {
             var page = req.params.page ? req.params.page : 1;
             var limit = req.params.limit ? req.params.limit : 10;
-            let query = {};
+            let query = {'user': req.user._id};
             var bankDetails = await bankDetailsService.getBankdetails(query, page, limit);
             return res.send(bankDetails);
         } catch (error) {
