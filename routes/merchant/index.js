@@ -1,11 +1,13 @@
 const express = require('express');
 const apiRouter = express();
-const user  = require('./users');
+const product = require ('./product');
+const order = require('./order');
+const bankDetails = require('./bankDetails');
+const payment = require('./payment');
 
-apiRouter.use('/', user);
-// apiRouter.use('/products', product);
-// apiRouter.use('/orders', product);
-
-
+apiRouter.use('/product', product);
+apiRouter.use('/order', order);
+apiRouter.use('/payment', payment);
+apiRouter.use('/bankDetails', bankDetails);
 
 module.exports = apiRouter;
