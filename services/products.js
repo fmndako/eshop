@@ -5,7 +5,7 @@ class ProductService {
     async getProduct(productId) {
         console.log(productId)
         try {
-            return await Product.findOne({ '_id': productId }).populate('User Discount Store Merchant ')
+            return await Product.findOne({ '_id': productId }).populate('user discount store merchant ')
         } catch (e) {
             throw new ErrorHandler(400, 'Error Cannot get Product');
         }
