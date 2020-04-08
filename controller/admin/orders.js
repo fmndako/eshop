@@ -7,7 +7,7 @@ class OrderController{
         try {
             var page = req.params.page ? req.params.page : 1;
             var limit = req.params.limit ? req.params.limit : 10;
-            let query = {'user': req.user._id};
+            let query = {};
             var orders = await OrderService.getOrders(query, page, limit);
             return res.send(orders);
         } catch (error) {
