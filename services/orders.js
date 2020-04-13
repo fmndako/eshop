@@ -8,17 +8,17 @@ class OrderService {
         try {
             return await Order.findOne({
                 '_id': orderId
-            }).populate('tracking merchant user address');
+            }).populate('user address');
         } catch (e) {
-            throw new ErrorHandler(400, 'Can not find order');
+            throw new ErrorHandler(400, e);
         }
     }
     async getOrders(query, page, limit) {
         try {
-            var orders = await Order.find(query).populate('tracking merchant user address').skip(page).limit(limit);
+            var orders = await Order.find(query).populate('user address').skip(page).limit(limit);
             return orders;
         } catch (e) {
-            throw new ErrorHandler(400, 'Error paginating orders');
+            throw new ErrorHandler(400, e);
         }
     }
     async createOrder(body) {

@@ -5,7 +5,7 @@ const router = express.Router();
 
 router.get('/:id', orderController.getOrder);
 
-router.get('/', orderController.getOrders)
+router.get('/', orderController.getOrders);
 
 router.put('/', orderController.updateOrder);
 

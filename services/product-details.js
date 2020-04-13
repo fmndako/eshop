@@ -1,4 +1,4 @@
-var ProductDetail = require('../models/productDetails');
+var ProductDetail = require('../models/product-details');
 const { ErrorHandler } = require('../utilities/error');
 
 class ProductDetailService {

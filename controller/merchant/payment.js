@@ -1,12 +1,12 @@
-const paymentService = require('../../services/payments')
+const paymentService = require('../../services/payments');
 
 class paymentController {
     async getPayment(req, res) {
         try {
-            var payment = await paymentService.getPayment(req.params.id)
-            return res.send(payment)
+            var payment = await paymentService.getPayment(req.params.id);
+            return res.send(payment);
         } catch (error) {
-            res.proccessError(400, error)
+            res.proccessError(400, error);
         }
     }
 

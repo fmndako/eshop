@@ -1,12 +1,12 @@
-const bankDetailsService = require('../../services/bank-details')
+const bankDetailsService = require('../../services/bank-details');
 
 class BankDetailsController {
     async getBankDetail(req, res) {
         try {
-            var bankDetail = await bankDetailsService.getBankDetail(req.params.id)
-            res.send(bankDetail)
+            var bankDetail = await bankDetailsService.getBankDetail(req.params.id);
+            res.send(bankDetail);
         } catch (error) {
-            res.proccessError(400, error)
+            res.proccessError(400, error);
         }
     }
 

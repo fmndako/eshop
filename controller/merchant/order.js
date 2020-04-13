@@ -1,4 +1,5 @@
 const orderService = require('../../services/orders');
+const productService = require('../../services/products');
 
 class OrdersController {
     async getOrder(req, res) {
@@ -15,10 +16,14 @@ class OrdersController {
             var page = req.params.page ? req.params.page : 1;
             var limit = req.params.limit ? req.params.limit : 10;
             let query = { 'merchant': req.user._id};
-            var orders = await orderService.getOrders(query, page, limit)
+            let products = await productService.getProducts(query, page, limit)
+            
+            var orders = await orderService.getOrders({}, page, limit);
+            let merchantProducts = products.map(p => {p._id = p._id});
+            orders = orders.filter(o => merchantProducts.includes(o._id))
             return res.send(orders);
         } catch (error) {
-            res.processError(400, error)
+            res.processError(400, error);
         }
     }
 
@@ -28,7 +33,7 @@ class OrdersController {
             var order = await orderService.updateOrder(req.params.id);
             return res.send(order);
         } catch (error) {
-            res.processError(400, error)
+            res.processError(400, error);
         }
     }
 }

@@ -1,4 +1,6 @@
 const ProductService = require('../../services/products'); 
+const ProductDetailService = require('../../services/product-details'); 
+
 const TagService = require('../../services/tags');   
 
 
@@ -7,6 +9,13 @@ class ProductController{
     async createProduct(req, res) {
         try {
             var product = await ProductService.createProduct(req.body);
+            product = product.toJSON();
+            product.details = [];
+            if (!req.body.details) req.body.details = [{type: "main"},]
+            for (var detail of req.body.details) {                
+                detail.product = product._id;
+                product.details.push(await ProductDetailService.createProductDetail(detail));
+            };
             return res.send(product);
         } catch (error) {
             res.processError(400, error);
