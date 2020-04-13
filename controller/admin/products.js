@@ -11,11 +11,11 @@ class ProductController{
             var product = await ProductService.createProduct(req.body);
             product = product.toJSON();
             product.details = [];
-            if (!req.body.details) req.body.details = [{type: "main"},]
+            if (!req.body.details) req.body.details = [{type: 'main'},];
             for (var detail of req.body.details) {                
                 detail.product = product._id;
                 product.details.push(await ProductDetailService.createProductDetail(detail));
-            };
+            }
             return res.send(product);
         } catch (error) {
             res.processError(400, error);

@@ -21,7 +21,7 @@ class ProductController{
     async getProduct(req, res) {
         try {
             var product = await ProductService.getProduct(req.params.id);
-            if (!product) throw "product not found";
+            if (!product) throw 'product not found';
             let query = {'product': product._id};
             let productDetails = await ProductDetailService.getProductDetails(query);
             var shippings = await ShippingService.getShippings(query);

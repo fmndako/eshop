@@ -17,12 +17,12 @@ class CartController {
     }
     async addCart (req, res) {
         try {
-            let query = {productDetail: req.params.productDetailId, checkedOut: false}
+            let query = {productDetail: req.params.productDetailId, checkedOut: false};
             var cart = await OrderItemService.getOrderItems(query);
 
             if (cart.length > 0) {
                 // update cart
-                return res.send(cart[0])
+                return res.send(cart[0]);
             }
 
             req.body.productDetail = req.params.productDetailId;

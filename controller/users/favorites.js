@@ -19,10 +19,10 @@ class FavoriteController{
             let product = req.params.productId;
             let query = {'user': req.user._id, 'product': product};
             var favorites = await FavoriteService.getFavorites(query);
-            if (favorites.length > 0) return res.send(favorites[0])
+            if (favorites.length > 0) return res.send(favorites[0]);
             let user = req.user._id;
             let date = new Date();
-            let favorite = {product, user, date}
+            let favorite = {product, user, date};
             favorite = await FavoriteService.createFavorite(favorite);
             return res.send(favorite);
         } catch (error) {
@@ -32,7 +32,7 @@ class FavoriteController{
 
     async deleteFavorite(req, res) {
         try {
-            let query = {user: req.user._id, product: req.params.productId}
+            let query = {user: req.user._id, product: req.params.productId};
             var favorite = await FavoriteService.getFavorites(query);
             favorite = await FavoriteService.deleteFavorite(favorite[0]._id);
             return res.send(favorite);
