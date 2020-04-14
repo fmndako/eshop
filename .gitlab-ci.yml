@@ -3,6 +3,7 @@
     stages:
       - build
       - lint
+      - test
 
     cache:
       paths:
@@ -18,3 +19,6 @@
     eslint_linting:
       stage: lint
       script: npm run pretest
+    jest testing:
+      stage: test
+      script: npm run test  
