@@ -14,6 +14,14 @@ class OrderController{
             res.processError(400, error);
         }
     }
+    async createOrder (req, res) {
+        try {
+            var orders = await OrderService.createOrder(req.body);
+            return res.send(orders);
+        } catch (error) {
+            res.processError(400, error);
+        }
+    }
     async getOrder(req, res) {
         try {
             var order = await OrderService.getOrder(req.params.id);
@@ -25,6 +33,7 @@ class OrderController{
             res.processError(400, error);
         }
     }
+
     async updateOrder(req, res) {
         try {
             var order = await OrderService.updateOrder(req.body._id, req.body);

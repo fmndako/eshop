@@ -3,18 +3,20 @@ const { ErrorHandler } = require('../utilities/error');
 
 class ProductService {
     async getProduct(productId) {
+        console.log(productId);
         try {
-            return await Product.findOne({'_id': productId}).populate('Store User Discount Category');
+            //TODO discount and store populate not working
+            return await Product.findOne({ '_id': productId }).populate('merchant').lean();
         } catch (e) {
-            throw new ErrorHandler(400, 'Error occur while updating Product');
+            throw new ErrorHandler(400, 'Error Cannot get Product');
         }
     }
     async getProducts(query, page, limit) {
         try {
-            var products = await Product.find(query).skip(page).limit(limit);
+            var products = await Product.find(query).populate('merchant').skip(page).limit(limit);
             return products;
         } catch (e) {
-            throw new ErrorHandler(400, 'Error while Paginating Product');
+            throw new ErrorHandler(400, 'Error cannot access all Products');
         }
     }
     async createProduct(body) {
@@ -24,6 +26,7 @@ class ProductService {
                 newProduct[k] = body[k];
             });
             return await newProduct.save();
+
         }
         catch (err) {
             throw new ErrorHandler(400, err);

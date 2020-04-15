@@ -2,15 +2,23 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 const OrderItem = new Schema({
-    order: {
+    user: {
         type: Schema.Types.ObjectId,
-        ref: 'Order'
+        ref: 'User'
     },
     productDetail: {
         type: Schema.Types.ObjectId,
         ref: 'ProductDetail'
     },
-    quatity: Number
+    savedForLater: Boolean,
+    quantity: Number,
+    timeAdded: Date,
+    checkedOut: Boolean,
+    shipped: Boolean,
+    shipping: {
+        type: Schema.Types.ObjectId,
+        ref: 'Shipping'
+    } 
 });
 
 module.exports = mongoose.model('OrderItem', OrderItem);

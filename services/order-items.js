@@ -15,10 +15,10 @@ class OrderItemService {
     }
     async getOrderItems(query, page, limit) {
         try {
-            var items = await OrderItem.find(query).populate('order productDetail').skip(page).limit(limit);
+            var items = await OrderItem.find(query).skip(page).limit(limit);
             return items;
         } catch (e) {
-            throw new ErrorHandler(400, 'Error paginating order items');
+            throw new ErrorHandler(400, e);
         }
     }
     async createOrderItem(body) {

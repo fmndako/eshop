@@ -7,7 +7,7 @@ const auth = async(req, res, next) => {
         if (!token){res.processError(401, 'Token not provided');}
         const data = jwt.verify(token, process.env.JWT_KEY);
     
-        const user = await User.findOne({ _id: data._id, 'tokens.token': token });
+        const user = await User.findOne({ _id: data._id, 'tokens.token': token }).select(['-tokens']);
         if (!user) {
             throw new Error();
         }

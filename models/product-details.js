@@ -15,6 +15,7 @@ const ProductDetail = new Schema({
         type: String
     }],
     description: String,
+    type: String
 });
 
 module.exports = mongoose.model('ProductDetail ', ProductDetail);
