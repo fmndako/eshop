@@ -14,19 +14,7 @@ describe('Payment Service', () => {
 
     it('Testing payment service', async done => {
 
-        let order = {};
-        order.created = 'today';
-        order.status = 'delivered';
-        order.amount = 25000;
-        order.shipped = true;
-        // create order
-        let result = await OrderService.createOrder(order);
-        let orderId = result._id;
-        expect(result._id).toBeTruthy();
-        let model = await OrderModel.find();
-        expect(model.length).toBe(1);
-        done();
-
+        
         let data = {};
         data.amount = 50000;
         data.date = new Date();
@@ -34,17 +22,14 @@ describe('Payment Service', () => {
         data.methodId = '12345678asdfg';
         data.status = 'delivired';
         data.orders = orderId;
-        // create 
-        let res = await PaymentService.createPayment(data);
-        let id = res._id;
-        expect(res._id).toBeTruthy();
-        let models = await PaymentModel.find();
-        expect(models.length).toBe(1);
-
+        
         // get by id
         let payment = await PaymentService.getPayment(id);
-        // expect(payment.order.amount).toBe(25000);
+        expect(payment.order.amount).toBe(25000);
+        
+        // get all payments
+        let payments = await PaymentService.getPayments(id, data);
+        expect(payments.order.amount).toBe(25000);
 
         done();
     });
-});

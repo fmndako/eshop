@@ -1,4 +1,4 @@
-var Discount = require('../models/discount');
+var Discount = require('../models/discounts');
 const { ErrorHandler } = require('../utilities/error');
 
 class DiscountService {
@@ -7,7 +7,7 @@ class DiscountService {
             return await Discount.findOne({ '_id': discountId });
         } catch (e) {
             throw new ErrorHandler(400, 'Error while Paginating Discount');
-        }
+        } 
     }
     async getDiscounts(query, page, limit) {
         try {
